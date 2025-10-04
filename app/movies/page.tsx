@@ -38,7 +38,7 @@ export default async function MoviesPage({
   return (
     <main className="space-y-4">
       <Header />
-      <section className="p-4">
+      <section className="p-8">
         <h1 className="text-2xl font-bold">Movies</h1>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-10">
@@ -60,7 +60,7 @@ export default async function MoviesPage({
             <Link
               key={p}
               href={`/movies?page=${p}`}
-              className={`rounded-md border px-3 py-1 text-sm ${p === page ? "bg-black text-white" : "hover:bg-neutral-50"}`}
+              className={`rounded-md border px-3 py-1 text-sm ${p === page ? "bg-red-500 text-white" : "hover:bg-neutral-50 hover:text-black"}`}
             >
               {p}
             </Link>

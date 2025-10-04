@@ -95,11 +95,12 @@ export default async function MovieDetail({
           <p>{m.description}</p>
 
           {isAuthed && (
-            <form action={toggleFavorite} method="post" className="pt-2">
+            <form action={toggleFavorite} className="pt-2">
               <input type="hidden" name="movieId" value={String(m.id)} />
+              <input type="hidden" name="isFav" value={isFav ? "1" : "0"} />
               <button
-                type="button"
-                className={`rounded-md border px-3 py-2 text-sm ${isFav ? "bg-amber-100" : "hover:bg-neutral-50"}`}
+                className={`rounded-md border cursor-pointer px-3 py-2 text-sm ${isFav ? "bg-amber-100" : "hover:bg-neutral-50"}`}
+                type="submit"
               >
                 {isFav ? "Remove from favorites" : "Add to favorites"}
               </button>

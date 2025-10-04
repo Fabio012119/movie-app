@@ -1,5 +1,5 @@
 "use server";
-
+import { BASE } from "@/utils/general";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -28,23 +28,21 @@ export async function logout() {
 
 export async function toggleFavorite(formData: FormData) {
   const id = String(formData.get("movieId") || "");
-  const auth = (await cookies()).get("auth_user");
-  if (!auth) redirect("/login?next=/movies");
+  const isFav = String(formData.get("isFav") || "0") === "1";
+  const token = (await cookies()).get("auth_token")?.value;
+  if (!token) redirect("/login?next=/movies");
 
-  const c = await cookies();
-  const raw = c.get("fav_ids")?.value || "[]";
-  let ids: string[] = [];
-  try {
-    ids = JSON.parse(raw);
-  } catch {}
-  const next = ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id];
+  const url = `${BASE}/movies/${id}/favorite`;
+  const method = isFav ? "DELETE" : "POST";
 
-  c.set("fav_ids", JSON.stringify(next), {
-    httpOnly: true,
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
+  const res = await fetch(url, {
+    method,
+    headers: { Authorization: `Bearer ${token}` },
+    cache: "no-store",
   });
 
+  if (res.status === 401) redirect("/login?next=/movies");
+
   const referer = (await headers()).get("referer") || "/movies";
-  redirect(referer);
+  if (res.status === 200) redirect(referer);
 }

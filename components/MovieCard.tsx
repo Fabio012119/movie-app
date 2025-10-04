@@ -40,17 +40,16 @@ export default function MovieCard({
           {movie.genre} • ⭐ {movie.rating.toFixed(1)}
         </p>
         <p className="line-clamp-2 text-sm">{movie.description}</p>
-        {isAuthed && (
-          <form action={toggleFavorite} method="post" className="pt-2">
-            <input type="hidden" name="movieId" value={String(movie.id)} />
-            <button
-              type="button"
-              className={`w-full rounded-md border px-3 py-2 cursor-pointer text-sm ${isFav ? "bg-amber-100" : "hover:bg-neutral-50"}`}
-            >
-              {isFav ? "Remove from favorites" : "Add to favorites"}
-            </button>
-          </form>
-        )}
+        <form action={toggleFavorite} className="pt-2">
+          <input type="hidden" name="movieId" value={String(movie.id)} />
+          <input type="hidden" name="isFav" value={isFav ? "1" : "0"} />
+          <button
+            className={`w-full rounded-md cursor-pointer border px-3 py-2 text-sm ${isFav ? "bg-amber-100" : "hover:bg-neutral-300"}`}
+            type="submit"
+          >
+            {isFav ? "Remove from favorites" : "Add to favorites"}
+          </button>
+        </form>
       </div>
     </article>
   );
