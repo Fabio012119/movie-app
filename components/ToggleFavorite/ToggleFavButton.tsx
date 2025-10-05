@@ -2,17 +2,13 @@
 import { toggleFavorite } from "@/api/toggleFavorite";
 
 //Types
-import type { Movie } from "@/types/movie";
+import type { ToggleFavoriteButtonProps } from "@/types/props";
 
 export default function ToggleFavoriteButton({
   movie,
   isFav,
   isInMovieDetails,
-}: {
-  movie: Movie;
-  isFav: boolean;
-  isInMovieDetails: boolean;
-}) {
+}: ToggleFavoriteButtonProps) {
   return (
     <form action={toggleFavorite} className="pt-2 text-black">
       <input type="hidden" name="movieId" value={String(movie.id)} />

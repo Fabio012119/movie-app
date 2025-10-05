@@ -4,15 +4,9 @@ import Image from "next/image";
 import ToggleFavoriteButton from "../ToggleFavorite/ToggleFavButton";
 
 //Types
-import type { Movie } from "@/types/movie";
+import type { MovieCardProps } from "@/types/props";
 
-export default function MovieCard({
-  movie,
-  isFav,
-}: {
-  movie: Movie;
-  isFav: boolean;
-}) {
+export default function MovieCard({ movie, isFav }: MovieCardProps) {
   return (
     <article
       className={`overflow-hidden rounded-xl border bg-white space-y-1 p-4 ${isFav ? "ring-2 ring-amber-400" : ""}`}

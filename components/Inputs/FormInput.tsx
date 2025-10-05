@@ -1,4 +1,6 @@
-export default function FormInput({ type }: { type: "username" | "password" }) {
+import type { FormInputs } from "@/types/props";
+
+export default function FormInput({ type }: FormInputs) {
   return (
     <label className="block">
       <span className="text-sm capitalize">{type}</span>

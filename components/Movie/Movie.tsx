@@ -4,9 +4,9 @@ import Image from "next/image";
 import ToggleFavoriteButton from "../ToggleFavorite/ToggleFavButton";
 
 //Types
-import type { Movie } from "@/types/movie";
+import type { MovieDescriptionProps } from "@/types/props";
 
-export default function MovieDescription({ movie }: { movie: Movie }) {
+export default function MovieDescription({ movie }: MovieDescriptionProps) {
   const { poster, title, year, genre, director, description, rating } = movie;
   return (
     <article className="space-y-4">

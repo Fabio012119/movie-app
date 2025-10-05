@@ -1,13 +1,10 @@
+//Components
 import Link from "next/link";
-import type { MoviesResponse } from "@/types/movie";
 
-export default function Pagination({
-  data,
-  page,
-}: {
-  data: MoviesResponse;
-  page: number;
-}) {
+//Types
+import type { PaginationProps } from "@/types/props";
+
+export default function Pagination({ data, page }: PaginationProps) {
   return (
     <nav className="flex items-center justify-center gap-2">
       {Array.from({ length: data.pagination.totalPages }, (_, i) => i + 1).map(

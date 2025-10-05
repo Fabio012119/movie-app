@@ -1,5 +1,5 @@
 //Components
-import FormInput from "@/components/Headers/FormInput";
+import FormInput from "@/components/Inputs/FormInput";
 
 //Constants
 import { errorMap } from "@/constants";
