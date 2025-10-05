@@ -8,6 +8,7 @@ import type { MovieDescriptionProps } from "@/types/props";
 
 export default function MovieDescription({ movie }: MovieDescriptionProps) {
   const { poster, title, year, genre, director, description, rating } = movie;
+
   return (
     <article className="space-y-4">
       <Link

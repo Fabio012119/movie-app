@@ -26,7 +26,6 @@ export default async function MoviesPage({ searchParams }: MoviesPageParams) {
       <Header />
       <section className="p-8">
         <h1 className="text-2xl font-bold">Movies</h1>
-
         <Suspense fallback={<MoviesListSkeleton />}>
           <MoviesSection dataPromise={dataPromise} page={page} />
         </Suspense>
