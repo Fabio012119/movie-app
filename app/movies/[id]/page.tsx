@@ -7,7 +7,10 @@ import generateMovieMetadata from "@/utils/movieMetadata";
 //Components
 import MovieDescription from "@/components/Movie/Movie";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+//Types
+import type { MovieDetailsParams } from "@/types/general";
+
+export async function generateMetadata({ params }: MovieDetailsParams) {
   const token = (await cookies()).get("auth_token")?.value;
   const id = Number(params.id);
   if (!token) return { title: "Login required" };
@@ -16,11 +19,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   generateMovieMetadata(m);
 }
 
-export default async function MovieDetail({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default async function MovieDetail({ params }: MovieDetailsParams) {
   const token = (await cookies()).get("auth_token")?.value;
   const id = Number(params.id);
 

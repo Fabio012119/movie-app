@@ -4,11 +4,10 @@ import FormInput from "@/components/Inputs/FormInput";
 //Constants
 import { errorMap } from "@/constants";
 
-export default async function LoginPage({
-  searchParams,
-}: {
-  searchParams: { error?: string; next?: string };
-}) {
+//Types
+import type { LoginPageProps } from "@/types/props";
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
   const params = (await searchParams) ?? "/movies";
 
   const { error, next } = params;

@@ -17,3 +17,7 @@ export type isInMovieDetails = { isInMovieDetails: boolean };
 export type ToggleFavoriteButtonProps = MovieDescriptionProps &
   isFav &
   isInMovieDetails;
+
+export type LoginPageProps = {
+  searchParams: { error?: string; next?: string };
+};
