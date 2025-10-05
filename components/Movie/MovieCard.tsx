@@ -1,6 +1,11 @@
+//Utils
+import { toggleFavorite } from "@/api/toggleFavorite";
+
+//Components
 import Link from "next/link";
-import { toggleFavorite } from "@/app/actions";
 import Image from "next/image";
+
+//Types
 import type { Movie } from "@/types/movie";
 
 export default function MovieCard({

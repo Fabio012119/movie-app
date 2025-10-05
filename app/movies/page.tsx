@@ -3,9 +3,9 @@ import { cookies } from "next/headers";
 import { fetchMovies } from "@/api/fetchMovies";
 
 //Components
-import Pagination from "@/components/Pagination";
-import MoviesList from "@/components/MoviesList";
-import Header from "@/components/Header";
+import Pagination from "@/components/Pagination/Pagination";
+import MoviesList from "@/components/Movie/MoviesList";
+import Header from "@/components/Headers/Header";
 
 export const dynamic = "force-dynamic";
 

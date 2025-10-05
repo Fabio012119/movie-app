@@ -5,7 +5,7 @@ import { fetchMovieById } from "@/api/fetchMovieById";
 import generateMovieMetadata from "@/utils/movieMetadata";
 
 //Components
-import MovieDescription from "@/components/Movie";
+import MovieDescription from "@/components/Movie/Movie";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const token = (await cookies()).get("auth_token")?.value;
