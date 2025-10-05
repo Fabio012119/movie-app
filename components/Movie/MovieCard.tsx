@@ -1,9 +1,7 @@
-//Utils
-import { toggleFavorite } from "@/api/toggleFavorite";
-
 //Components
 import Link from "next/link";
 import Image from "next/image";
+import ToggleFavoriteButton from "../ToggleFavorite/ToggleFavButton";
 
 //Types
 import type { Movie } from "@/types/movie";
@@ -36,16 +34,11 @@ export default function MovieCard({
         </p>
         <p className="line-clamp-2 text-sm">{movie.description}</p>
       </Link>
-      <form action={toggleFavorite} className="pt-2 text-black">
-        <input type="hidden" name="movieId" value={String(movie.id)} />
-        <input type="hidden" name="isFav" value={isFav ? "1" : "0"} />
-        <button
-          className={`w-full rounded-md cursor-pointer border px-3 py-2 text-sm ${isFav ? "bg-amber-100" : "hover:bg-neutral-300"}`}
-          type="submit"
-        >
-          {isFav ? "Remove from favorites" : "Add to favorites"}
-        </button>
-      </form>
+      <ToggleFavoriteButton
+        movie={movie}
+        isFav={isFav}
+        isInMovieDetails={false}
+      />
     </article>
   );
 }
