@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { BASE } from "@/utils/general";
 
-const LOGIN_URL = `${BASE?.replace(/\/$/, "")}/auth/login`;
-
 export async function POST(req: Request) {
   const form = await req.formData();
   const username = String(form.get("username") || "").trim();
@@ -18,7 +16,7 @@ export async function POST(req: Request) {
 
   let apiRes: Response;
   try {
-    apiRes = await fetch(LOGIN_URL, {
+    apiRes = await fetch(`${BASE}/auth/login`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ username, password }),
