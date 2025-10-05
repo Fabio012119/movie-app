@@ -25,7 +25,7 @@ export async function toggleFavorite(formData: FormData) {
 
   const referer = (await headers()).get("referer") || "/movies";
   const path = new URL(referer).pathname;
-  await revalidatePath(path);
+  revalidatePath(path);
 
   return { ok: true, id, nowFav: !isFav };
 }
