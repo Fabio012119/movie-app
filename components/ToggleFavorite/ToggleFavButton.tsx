@@ -1,5 +1,10 @@
-//Utils
-import { toggleFavorite } from "@/api/toggleFavorite";
+"use client";
+
+//Hooks
+import { useToggleFavorite } from "@/hooks/useToggleFavorite";
+
+//helpers
+import { btnClass } from "@/helpers/toggleFavButton.helpers";
 
 //Types
 import type { ToggleFavoriteButtonProps } from "@/types/props";
@@ -9,15 +14,23 @@ export default function ToggleFavoriteButton({
   isFav,
   isInMovieDetails,
 }: ToggleFavoriteButtonProps) {
+  const { handleAction, pending, optimisticFav } = useToggleFavorite(isFav);
+
   return (
-    <form action={toggleFavorite} className="pt-2 text-black">
+    <form action={handleAction} className="pt-2 text-black">
       <input type="hidden" name="movieId" value={String(movie.id)} />
-      <input type="hidden" name="isFav" value={isFav ? "1" : "0"} />
+      <input type="hidden" name="isFav" value={optimisticFav ? "1" : "0"} />
+
       <button
-        className={`${isInMovieDetails ? "min-md:w-[25%]" : "w-full"} rounded-md cursor-pointer border px-3 py-2 text-sm ${isFav ? "bg-amber-100" : "bg-neutral-300"}`}
         type="submit"
+        disabled={pending}
+        className={btnClass(isInMovieDetails, optimisticFav)}
       >
-        {isFav ? "Remove from favorites" : "Add to favorites"}
+        {pending
+          ? "Saving..."
+          : optimisticFav
+            ? "Remove from favorites"
+            : "Add to favorites"}
       </button>
     </form>
   );

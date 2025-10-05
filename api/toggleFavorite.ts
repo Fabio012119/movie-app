@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { BASE } from "@/utils/general";
 import { cookies, headers } from "next/headers";
 
@@ -20,7 +21,11 @@ export async function toggleFavorite(formData: FormData) {
   });
 
   if (res.status === 401) redirect("/login?next=/movies");
+  if (!res.ok) throw new Error("Failed to toggle favorite");
 
   const referer = (await headers()).get("referer") || "/movies";
-  if (res.status === 200) redirect(referer);
+  const path = new URL(referer).pathname;
+  await revalidatePath(path);
+
+  return { ok: true, id, nowFav: !isFav };
 }

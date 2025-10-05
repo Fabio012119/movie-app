@@ -20,6 +20,7 @@
       "@/utils/*": ["utils/*"],
       "@/types/*": ["types/*"],
       "@/data/*": ["data/*"],
+      "@/hooks/*": ["hooks/*"],
       "@/app/*": ["app/*"]
     },
     "allowJs": true,
