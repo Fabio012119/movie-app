@@ -1,12 +1,15 @@
+//Utils
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import { fetchMovies } from "@/api/fetchMovies";
 
+//Components
 import Header from "@/components/Headers/Header";
 import MoviesList from "@/components/Movie/MoviesList";
 import Pagination from "@/components/Pagination/Pagination";
 import { MoviesListSkeleton } from "@/components/Skeleton/SkeletonList";
 
+//Types
 import type { MoviesPageParams } from "@/types/props";
 
 export const dynamic = "force-dynamic";
