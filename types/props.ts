@@ -21,3 +21,9 @@ export type ToggleFavoriteButtonProps = MovieDescriptionProps &
 export type LoginPageProps = {
   searchParams: { error?: string; next?: string };
 };
+
+export type MovieDetailsParams = { params: { id: string } };
+
+export type MoviesPageParams = {
+  searchParams: { page?: string };
+};
