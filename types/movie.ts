@@ -7,7 +7,7 @@ export type Movie = {
   rating: number;
   poster: string;
   description: string;
-  isFavorite?: boolean;
+  favorite: boolean;
 };
 export type MoviesResponse = {
   movies: Movie[];

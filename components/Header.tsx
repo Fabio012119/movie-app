@@ -21,13 +21,10 @@ export default function Header() {
           <Link href="/movies" className="font-bold">
             MovieApp
           </Link>
-          <Link href="/movies" className="hover:underline">
-            Browse
-          </Link>
         </nav>
         <div className="flex items-center gap-3 text-sm">
           <span>
-            Signed in as <strong>{username}</strong>
+            Signed in as <strong className="underline">{username}</strong>
           </span>
           <Link
             href="/logout"

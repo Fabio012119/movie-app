@@ -22,7 +22,6 @@ export async function POST(req: Request) {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ username, password }),
-      cache: "no-store",
     });
   } catch {
     const url = new URL("/login", req.url);
