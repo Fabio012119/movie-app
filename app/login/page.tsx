@@ -1,5 +1,8 @@
-import { errorMap } from "@/constants";
+//Components
 import FormInput from "@/components/FormInput";
+
+//Constants
+import { errorMap } from "@/constants";
 
 export default function LoginPage({
   searchParams,
