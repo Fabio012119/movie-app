@@ -19,9 +19,7 @@ export default function MovieCard({
           alt={movie.title}
           className="h-64 w-full object-cover"
         />
-        <h3 className="line-clamp-1 text-lg font-semibold">
-          <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-        </h3>
+        <h3 className="line-clamp-1 text-lg font-semibold">{movie.title}</h3>
         <p className="text-sm text-neutral-600">
           {movie.year} • {movie.director}
         </p>
