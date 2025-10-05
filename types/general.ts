@@ -6,4 +6,6 @@ export type ErrorCode =
   | "server"
   | "bad_response";
 
-  export type MovieDetailsParams = { params: { id: string } }
+export type MovieDetailsParams = {
+  params: Promise<{ id: string }>;
+};
