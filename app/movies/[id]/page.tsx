@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { BASE } from "@/utils/general";
+import Image from "next/image";
 import type { Movie } from "@/types/movie";
 
 async function fetchMovieById(
@@ -67,15 +68,17 @@ export default async function MovieDetail({
     <article className="space-y-4">
       <Link
         href="/movies"
-        className="inline-block rounded-md border px-3 py-1 text-sm hover:bg-neutral-50 hover:text-black"
+        className="inline-block fixed rounded-md border px-3 py-1 text-sm hover:bg-neutral-50 hover:text-black"
       >
         ← Back to list
       </Link>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-[240px,1fr]">
-        <img
+      <div className="flex flex-col">
+        <Image
+          width={1920}
+          height={1080}
           src={m.poster}
           alt={m.title}
-          className="h-80 w-full rounded-lg object-cover md:h-full"
+          className="h-[80lvh] w-full rounded-lg object-cover"
         />
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">

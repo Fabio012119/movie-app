@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { toggleFavorite } from "@/app/actions";
+import Image from "next/image";
 import type { Movie } from "@/types/movie";
 
 export default function MovieCard({
@@ -14,7 +15,9 @@ export default function MovieCard({
       className={`overflow-hidden rounded-xl border bg-white space-y-1 p-4 ${isFav ? "ring-2 ring-amber-400" : ""}`}
     >
       <Link href={`/movies/${movie.id}`} className=" text-black block">
-        <img
+        <Image
+          width={1920}
+          height={1080}
           src={movie.poster}
           alt={movie.title}
           className="h-64 w-full object-cover"
