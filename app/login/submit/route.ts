@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { BASE } from "@/utils/general";
+import { redirectWith } from "@/utils/loginRedirects";
 
 export async function POST(req: Request) {
   const form = await req.formData();
@@ -8,10 +9,7 @@ export async function POST(req: Request) {
   const next = String(form.get("next") || "/movies");
 
   if (!username || !password) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "missing");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "missing");
   }
 
   let apiRes: Response;
@@ -22,44 +20,28 @@ export async function POST(req: Request) {
       body: JSON.stringify({ username, password }),
     });
   } catch {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "network");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "network");
   }
 
   if (apiRes.status === 401 || apiRes.status === 400) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "invalid");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "invalid");
   }
   if (apiRes.status === 429) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "rate_limit");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "rate_limit");
   }
   if (!apiRes.ok) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "server");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "server");
   }
 
-  const data = await apiRes.json().catch(() => ({}));
+  const data = await apiRes.json();
   const token = data?.token as string | undefined;
   const name = (data?.user?.username as string | undefined) ?? username;
 
   if (!token) {
-    const url = new URL("/login", req.url);
-    url.searchParams.set("error", "bad_response");
-    url.searchParams.set("next", next);
-    return NextResponse.redirect(url);
+    return redirectWith(req, next, "bad_response");
   }
 
   const res = NextResponse.redirect(new URL(next, req.url));
-
   res.cookies.set("auth_token", token, {
     httpOnly: true,
     path: "/",
