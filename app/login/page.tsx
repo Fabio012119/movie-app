@@ -1,4 +1,5 @@
 import { errorMap } from "@/constants";
+import FormInput from "@/components/FormInput";
 
 export default function LoginPage({
   searchParams,
@@ -17,23 +18,8 @@ export default function LoginPage({
       )}
       <form action="/login/submit" method="post" className="space-y-3">
         <input type="hidden" name="next" value={next} />
-        <label className="block">
-          <span className="text-sm">Username</span>
-          <input
-            name="username"
-            required
-            className="mt-1 w-full rounded-md border p-2"
-          />
-        </label>
-        <label className="block">
-          <span className="text-sm">Password</span>
-          <input
-            name="password"
-            type="password"
-            required
-            className="mt-1 w-full rounded-md border p-2"
-          />
-        </label>
+        <FormInput type="username" />
+        <FormInput type="password" />
         <button
           type="submit"
           className="w-full rounded-md bg-black p-2 text-white"
