@@ -37,9 +37,9 @@ export default async function MoviePage(page: Page) {
     await validateMoviesList(page);
   }
 
-  const firstMovie = page.getByTestId("movie-card").first();
+  const lastMovie = page.getByTestId("movie-card").last();
 
-  const anyFavBtn = firstMovie.getByTestId("fav-btn");
+  const anyFavBtn = lastMovie.getByTestId("fav-btn");
   await anyFavBtn.scrollIntoViewIfNeeded();
 
   await anyFavBtn.click();
@@ -52,7 +52,7 @@ export default async function MoviePage(page: Page) {
   await page.waitForTimeout(3000);
   await expect(anyFavBtn).toHaveText(/Add to favorites/i);
 
-  await firstMovie.click();
+  await lastMovie.click();
 
   await page.waitForLoadState("networkidle");
 }
