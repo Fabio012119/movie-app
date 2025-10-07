@@ -19,7 +19,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
         <nav className="flex items-center gap-4">
           <Link href="/movies" className="font-bold">
-            MovieApp
+            🎬 MOVIE APP
           </Link>
         </nav>
         <div className="flex items-center gap-3 text-sm">
