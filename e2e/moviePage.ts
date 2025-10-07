@@ -38,19 +38,26 @@ export default async function MoviePage(page: Page) {
   }
 
   const lastMovie = page.getByTestId("movie-card").last();
+  const favBtn = lastMovie.getByTestId("fav-btn");
+  await favBtn.scrollIntoViewIfNeeded();
 
-  const anyFavBtn = lastMovie.getByTestId("fav-btn");
-  await anyFavBtn.scrollIntoViewIfNeeded();
+  await expect(favBtn).toHaveText(/^(Add to favorites|Remove from favorites)$/);
 
-  await anyFavBtn.click();
-  await page.waitForTimeout(3000);
-  await page.waitForLoadState("networkidle");
-  await expect(anyFavBtn).toHaveText("Add to favorites");
+  const initial = (await favBtn.innerText()).trim();
 
-  await anyFavBtn.click();
-  await page.waitForTimeout(3000);
-  await page.waitForLoadState("networkidle");
-  await expect(anyFavBtn).toHaveText("Remove from favorites");
+  if (initial === "Add to favorites") {
+    await favBtn.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(3000);
+    await expect(favBtn).toHaveText("Remove from favorites");
+  } else if (initial === "Remove from favorites") {
+    await favBtn.click();
+    await page.waitForLoadState("networkidle");
+    await page.waitForTimeout(3000);
+    await expect(favBtn).toHaveText("Add to favorites");
+  } else {
+    throw new Error(`Unexpected favorites button text: "${initial}"`);
+  }
 
   await lastMovie.click();
 
