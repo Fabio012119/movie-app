@@ -43,14 +43,14 @@ export default async function MoviePage(page: Page) {
   await anyFavBtn.scrollIntoViewIfNeeded();
 
   await anyFavBtn.click();
+  await page.waitForTimeout(5000);
   await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(3000);
-  await expect(anyFavBtn).toHaveText(/Remove from favorites/i);
+  await expect(anyFavBtn).toHaveText("Remove from favorites");
 
   await anyFavBtn.click();
+  await page.waitForTimeout(5000);
   await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(3000);
-  await expect(anyFavBtn).toHaveText(/Add to favorites/i);
+  await expect(anyFavBtn).toHaveText("Add to favorites");
 
   await lastMovie.click();
 
