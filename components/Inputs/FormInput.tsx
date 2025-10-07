@@ -8,6 +8,7 @@ export default function FormInput({ type }: FormInputs) {
         name={type}
         type={type}
         required
+        data-testid={`login-${type}`}
         className="mt-1 w-full rounded-md border p-2"
       />
     </label>

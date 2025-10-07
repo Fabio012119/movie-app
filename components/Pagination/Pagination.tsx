@@ -12,6 +12,7 @@ export default function Pagination({ data, page }: PaginationProps) {
           <Link
             key={p}
             href={`/movies?page=${p}`}
+            data-testid="paginating-links"
             className={`rounded-md border px-3 py-1 text-sm ${p === page ? "bg-red-500 text-white" : "hover:bg-neutral-50 hover:text-black"}`}
           >
             {p}

@@ -23,6 +23,7 @@ export default function ToggleFavoriteButton({
 
       <button
         type="submit"
+        data-testid="fav-btn"
         disabled={pending}
         className={btnClass(isInMovieDetails, optimisticFav)}
       >

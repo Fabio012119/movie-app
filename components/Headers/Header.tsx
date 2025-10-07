@@ -15,19 +15,20 @@ export default function Header() {
   if (pathname === "/login") return null;
 
   return (
-    <header className="border-b bg-black">
+    <header className="border-b bg-black" data-testid="app-menu">
       <div className="mx-auto flex max-w-5xl items-center justify-between p-4">
         <nav className="flex items-center gap-4">
-          <Link href="/movies" className="font-bold">
+          <Link href="/movies" className="font-bold" data-testid="app-title">
             🎬 MOVIE APP
           </Link>
         </nav>
         <div className="flex items-center gap-3 text-sm">
-          <span>
+          <span data-testid="signed-in-username">
             Signed in as <strong className="underline">{username}</strong>
           </span>
           <Link
             href="/logout"
+            data-testid="log-out-btn"
             className="rounded-md border px-3 py-1 text-white hover:bg-neutral-50 hover:text-black"
           >
             Log out
